@@ -814,9 +814,12 @@ void GifDecoder<maxGifWidth, maxGifHeight, lzwMaxBits>::decompressAndDisplayFram
 
     // Image data is decompressed, now display portion of image affected by frame
     int yOffset, pixel;
-    for (int y = tbiImageY; y < tbiHeight + tbiImageY; y++) {
+
+    int yEnd = min(tbiHeight + tbiImageY, maxGifHeight);
+    int xEnd = min(tbiWidth + tbiImageX, maxGifWidth);
+    for (int y = tbiImageY; y < yEnd; y++) {
         yOffset = y * maxGifWidth;
-        for (int x = tbiImageX; x < tbiWidth + tbiImageX; x++) {
+        for (int x = tbiImageX; x < xEnd; x++) {
             // Get the next pixel
             pixel = imageData[yOffset + x];
 
