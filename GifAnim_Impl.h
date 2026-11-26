@@ -247,9 +247,9 @@ void sav_setup() {
 		Serial.print(file.name());
 		Serial.print(" Size: ");
 		Serial.println(file.size());
-		close(file);
+		file.close();
 	    }
-	    close(dir);
+	    dir.close();
         #endif
 	dir = FSO.open("/");
 	while (File file = dir.openNextFile()) {
@@ -257,9 +257,9 @@ void sav_setup() {
 	    Serial.print(file.name());
 	    Serial.print(" Size: ");
 	    Serial.println(file.size());
-	    close(file);
+	    file.close();
 	}
-	close(dir);
+	dir.close();
     #endif // ESP8266
     Serial.println();
 #else
